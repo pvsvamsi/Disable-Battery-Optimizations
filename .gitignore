@@ -4,4 +4,6 @@
 .packages
 .pub/
 
+doc/*
+
 build/
