@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+Initial release with methods to get the optimization status, show disable optimization dialogs
