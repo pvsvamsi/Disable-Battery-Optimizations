@@ -1,4 +1,4 @@
-package in.jvapps.disable_battery_optimization;
+package in.jvapps.disable_battery_optimization.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
