@@ -36,13 +36,13 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Is Battery optimization disabled"),
                   onPressed: () async {
                     bool isBatteryOptimizationDisabled = await DisableBatteryOptimization.isBatteryOptimizationDisabled;
-                    Fluttertoast.showToast(msg: "Battery optimization is ${isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                    Fluttertoast.showToast(msg: "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Is Manufacturer Battery optimization disabled"),
                   onPressed: () async {
                     bool isManBatteryOptimizationDisabled = await DisableBatteryOptimization.isManufacturerBatteryOptimizationDisabled;
-                    Fluttertoast.showToast(msg: "Manufacturer Battery optimization is ${isManBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                    Fluttertoast.showToast(msg: "Manufacturer Battery optimization is ${!isManBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Are All Battery optimizations disabled"),
@@ -58,11 +58,10 @@ class _MyAppState extends State<MyApp> {
               MaterialButton(
                   child: Text("Disable Battery Optimizations"),
                   onPressed: () {
-                    DisableBatteryOptimization.showDisableBatteryOptimizationSettings(
-                        "Run in Background", "To be able to perform operations in the background, this app must have permission to run in background.");
+                    DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
                   }),
               MaterialButton(
-                  child: Text("Disable Additional Battery Optimizations"),
+                  child: Text("Disable Manufacturer Battery Optimizations"),
                   onPressed: () {
                     DisableBatteryOptimization.showDisableManufacturerBatteryOptimizationSettings("Your device has additional battery optimization",
                         "Follow the steps and disable the optimizations to allow smooth functioning of this app");
@@ -73,8 +72,6 @@ class _MyAppState extends State<MyApp> {
                     DisableBatteryOptimization.showDisableAllOptimizationsSettings(
                         "Enable Auto Start",
                         "Follow the steps and enable the auto start of this app",
-                        "Run in Background",
-                        "To be able to perform operations in the background, this app must have permission to run in background.",
                         "Your device has additional battery optimization",
                         "Follow the steps and disable the optimizations to allow smooth functioning of this app");
                   })
