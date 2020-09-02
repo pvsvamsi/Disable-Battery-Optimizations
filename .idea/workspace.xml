@@ -6,9 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ff8f3b1-851d-48dd-ace2-d641a939e700" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/in/jvapps/disable_battery_optimization/DisableBatteryOptimizationPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/in/jvapps/disable_battery_optimization/DisableBatteryOptimizationPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/java/in/jvapps/disable_battery_optimization_example/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/java/in/jvapps/disable_battery_optimization_example/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,30 +46,34 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1598971570772">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1599030219047">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1598971570772" />
-    <state width="1323" height="259" key="GridCell.Tab.0.bottom" timestamp="1598972923547">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599030219047" />
+    <state width="1323" height="259" key="GridCell.Tab.0.bottom" timestamp="1599039012875">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="259" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1598972923547" />
-    <state width="1323" height="259" key="GridCell.Tab.0.center" timestamp="1598972923547">
+    <state width="1323" height="259" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599039012875" />
+    <state width="1323" height="259" key="GridCell.Tab.0.center" timestamp="1599039012874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="259" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1598972923547" />
-    <state width="1323" height="259" key="GridCell.Tab.0.left" timestamp="1598972923547">
+    <state width="1323" height="259" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599039012874" />
+    <state width="1323" height="259" key="GridCell.Tab.0.left" timestamp="1599039012874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="259" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1598972923547" />
-    <state width="1323" height="259" key="GridCell.Tab.0.right" timestamp="1598972923547">
+    <state width="1323" height="259" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599039012874" />
+    <state width="1323" height="259" key="GridCell.Tab.0.right" timestamp="1599039012874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="259" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1598972923547" />
-    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1598963791566">
+    <state width="1323" height="259" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599039012874" />
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1599037868610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1598963791566" />
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1599037868610" />
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1599029561302">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599029561302" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1598973899664">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

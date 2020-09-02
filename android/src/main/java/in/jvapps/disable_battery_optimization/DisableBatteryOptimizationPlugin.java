@@ -59,12 +59,14 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     // in the same class.
     public static void registerWith(PluginRegistry.Registrar registrar) {
         final MethodChannel channel = new MethodChannel(registrar.messenger(), CHANNEL_NAME);
-        channel.setMethodCallHandler(new DisableBatteryOptimizationPlugin(registrar.activity()));
+        channel.setMethodCallHandler(new DisableBatteryOptimizationPlugin(registrar.activity(), registrar.activeContext()));
     }
 
-    private DisableBatteryOptimizationPlugin(Activity activity) {
-        mActivity = activity;
-        mContext = activity.getApplicationContext();
+    private DisableBatteryOptimizationPlugin(Activity activity, Context context) {
+        if (activity != null)
+            mActivity = activity;
+        if (context != null)
+            mContext = context;
     }
 
     /**
