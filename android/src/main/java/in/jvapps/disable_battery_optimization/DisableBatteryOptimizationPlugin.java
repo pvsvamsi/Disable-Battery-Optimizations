@@ -238,6 +238,7 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
         if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext)) {
             final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
             if (ignoreBatteryOptimizationsIntent != null) {
+                Log.i(TAG, "Alert title is " + batteryTitle + " Battery message is " + batteryMessage);
                 new AlertDialog.Builder(mActivity).setTitle(batteryTitle).setMessage(batteryMessage)
                         .setCancelable(false).setPositiveButton("OK", (dialogInterface, i) -> {
                     if (isAll)
