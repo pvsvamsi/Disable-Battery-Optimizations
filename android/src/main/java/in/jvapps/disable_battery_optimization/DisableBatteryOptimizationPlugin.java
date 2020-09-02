@@ -40,8 +40,6 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     private final String TAG = "DisableOptimization";
     private static final String CHANNEL_NAME = "in.jvapps.disable_battery_optimization";
 
-    private String batteryTitle;
-    private String batteryMessage;
     private String autoStartTitle;
     private String autoStartMessage;
     private String manBatteryTitle;
@@ -116,16 +114,8 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 break;
             case "showDisableBatteryOptimization":
                 try {
-                    List arguments = (List) call.arguments;
-                    if (arguments != null) {
-                        batteryTitle = String.valueOf(arguments.get(0));
-                        batteryMessage = String.valueOf(arguments.get(1));
-                        showIgnoreBatteryPermissions(false);
-                        result.success(true);
-                    } else {
-                        Log.e(TAG, "Unable to request disable battery optimization. Arguments are null");
-                        result.success(false);
-                    }
+                    showIgnoreBatteryPermissions(false);
+                    result.success(true);
                 } catch (Exception ex) {
                     Log.e(TAG, "Exception in showDisableBatteryOptimization. " + ex.toString());
                     result.success(false);
@@ -135,12 +125,10 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 try {
                     List arguments = (List) call.arguments;
                     if (arguments != null) {
-                        batteryTitle = String.valueOf(arguments.get(0));
-                        batteryMessage = String.valueOf(arguments.get(1));
-                        autoStartTitle = String.valueOf(arguments.get(2));
-                        autoStartMessage = String.valueOf(arguments.get(3));
-                        manBatteryTitle = String.valueOf(arguments.get(4));
-                        manBatteryMessage = String.valueOf(arguments.get(5));
+                        autoStartTitle = String.valueOf(arguments.get(0));
+                        autoStartMessage = String.valueOf(arguments.get(1));
+                        manBatteryTitle = String.valueOf(arguments.get(2));
+                        manBatteryMessage = String.valueOf(arguments.get(3));
                         showIgnoreBatteryPermissions(true);
                         result.success(true);
                     } else {
@@ -238,13 +226,10 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
         if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext)) {
             final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
             if (ignoreBatteryOptimizationsIntent != null) {
-                Log.i(TAG, "Alert title is " + batteryTitle + " Battery message is " + batteryMessage);
-                new AlertDialog.Builder(mActivity).setTitle(batteryTitle).setMessage(batteryMessage)
-                        .setCancelable(false).setPositiveButton("OK", (dialogInterface, i) -> {
-                    if (isAll)
-                        mActivity.startActivityForResult(ignoreBatteryOptimizationsIntent, REQUEST_DISABLE_BATTERY_OPTIMIZATIONS);
+                if (isAll)
+                    mActivity.startActivityForResult(ignoreBatteryOptimizationsIntent, REQUEST_DISABLE_BATTERY_OPTIMIZATIONS);
+                else
                     mContext.startActivity(ignoreBatteryOptimizationsIntent);
-                }).show();
             }
         }
     }
