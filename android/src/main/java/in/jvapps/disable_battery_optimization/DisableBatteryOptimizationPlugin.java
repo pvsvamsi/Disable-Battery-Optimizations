@@ -45,36 +45,6 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     private String manBatteryTitle;
     private String manBatteryMessage;
 
-
-    // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-    // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-    // plugin registration via this function while apps migrate to use the new Android APIs
-    // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-    //
-    // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-    // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-    // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-    // in the same class.
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), CHANNEL_NAME);
-        channel.setMethodCallHandler(new DisableBatteryOptimizationPlugin(registrar.activity(), registrar.activeContext()));
-    }
-
-    private DisableBatteryOptimizationPlugin(Activity activity, Context context) {
-        if (activity != null)
-            mActivity = activity;
-        if (context != null)
-            mContext = context;
-    }
-
-    /**
-     * Default constructor for DisableBatteryOptimizationPlugin.
-     *
-     * <p>Use this constructor when adding this plugin to an app with v2 embedding.
-     */
-    public DisableBatteryOptimizationPlugin() {
-    }
-
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         switch (call.method) {
