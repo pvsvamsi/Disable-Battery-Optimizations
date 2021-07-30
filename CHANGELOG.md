@@ -1,3 +1,7 @@
+## 0.1.2
+
+Removed setting false for the auto start, manfact optimizations
+
 ## 0.1.1
 
 Now opening device settings, in case power intent is not available for oneplus and xiaomi
