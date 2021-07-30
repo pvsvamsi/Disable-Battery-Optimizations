@@ -58,7 +58,7 @@ public class BatteryOptimizationUtil {
 
         if (KillerManager.isActionAvailable(context, action)) {
             if (titleMessage == null) {
-                titleMessage = "Your Manufacturer " + android.os.Build.MANUFACTURER + " has additional battery optimization";
+                titleMessage = String.format("Your Device %s %s has additional battery optimization", Build.MANUFACTURER, Build.MODEL);
             }
 
             new DialogKillerManagerBuilder()
@@ -67,15 +67,15 @@ public class BatteryOptimizationUtil {
                     .setTitleMessage(titleMessage)
                     .setContentMessage(contentMessage)
                     .setPositiveMessage("Ok")
-                    .setNegativeMessage("Will Give Later")
+                    //.setNegativeMessage("Will Give Later")
                     .setOnPositiveCallback((View view) -> {
                         if (positiveCallback != null)
                             positiveCallback.onBatteryOptimizationAccepted();
                     })
-                    .setOnNegativeCallback((View view) -> {
+                    /*.setOnNegativeCallback((View view) -> {
                         if (negativeCallback != null)
                             negativeCallback.onBatteryOptimizationCanceled();
-                    })
+                    })*/
                     .setAction(action)
                     .show();
         } else {

@@ -189,15 +189,15 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
         channel.setMethodCallHandler(null);
     }
 
-    private void showAutoStartEnabler(@Nullable final BatteryOptimizationUtil.OnBatteryOptimizationAccepted positiveCallback,
-                                      @Nullable final BatteryOptimizationUtil.OnBatteryOptimizationCanceled negativeCallback) {
+    private void showAutoStartEnabler(@NonNull final BatteryOptimizationUtil.OnBatteryOptimizationAccepted positiveCallback,
+                                      @NonNull final BatteryOptimizationUtil.OnBatteryOptimizationCanceled negativeCallback) {
         BatteryOptimizationUtil.showBatteryOptimizationDialog(
                 mContext,
                 KillerManager.Actions.ACTION_AUTOSTART,
                 autoStartTitle,
                 autoStartMessage,
-                (positiveCallback == null) ? () -> setManAutoStart(true) : positiveCallback,
-                (negativeCallback == null) ? () -> setManAutoStart(false) : negativeCallback
+                positiveCallback,
+                negativeCallback
         );
     }
 
@@ -214,7 +214,6 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                     }
                 },
                 () -> {
-                    setManBatteryOptimization(false);
                     if (isRequestNativeBatteryOptimizationDisabler) {
                         showIgnoreBatteryPermissions();
                     }
@@ -245,7 +244,6 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 else
                     showIgnoreBatteryPermissions();
             }, () -> {
-                setManAutoStart(false);
                 if (!isManBatteryOptimizationDisabled)
                     showManBatteryOptimizationDisabler(true);
                 else
