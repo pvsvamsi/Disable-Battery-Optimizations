@@ -1,5 +1,8 @@
 package in.jvapps.disable_battery_optimization.utils;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +15,6 @@ import androidx.annotation.Nullable;
 
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
 
 
 public class BatteryOptimizationUtil {
@@ -68,7 +68,7 @@ public class BatteryOptimizationUtil {
                     .setContentMessage(contentMessage)
                     .setPositiveMessage("Ok")
                     //.setNegativeMessage("Will Give Later")
-                    .setOnPositiveCallback((View view) -> {
+                    .setOnPositiveCallback((dialog, which) -> {
                         if (positiveCallback != null)
                             positiveCallback.onBatteryOptimizationAccepted();
                     })

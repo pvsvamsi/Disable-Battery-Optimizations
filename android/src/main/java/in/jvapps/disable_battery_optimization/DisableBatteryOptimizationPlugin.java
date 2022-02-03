@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 
@@ -37,7 +35,7 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     private MethodChannel channel;
 
     private static final int REQUEST_DISABLE_BATTERY_OPTIMIZATIONS = 2244;
-    private final String TAG = "DisableOptimization";
+    private final String TAG = "BO:DisableOptimization";
     private static final String CHANNEL_NAME = "in.jvapps.disable_battery_optimization";
 
     private String autoStartTitle;
