@@ -1,3 +1,7 @@
+## 0.2.0
+
+Upgraded flutter + Fixed issues
+
 ## 0.1.2
 
 Removed setting false for the auto start, manfact optimizations
