@@ -157,7 +157,9 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
 
     @Override
     public void onAttachedToEngine(FlutterPluginBinding binding) {
+
         channel = new MethodChannel(binding.getBinaryMessenger(), CHANNEL_NAME);
+        mContext = binding.getApplicationContext();
     }
 
     @Override
@@ -190,7 +192,7 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     private void showAutoStartEnabler(@NonNull final BatteryOptimizationUtil.OnBatteryOptimizationAccepted positiveCallback,
                                       @NonNull final BatteryOptimizationUtil.OnBatteryOptimizationCanceled negativeCallback) {
         BatteryOptimizationUtil.showBatteryOptimizationDialog(
-                mContext,
+                mActivity,
                 KillerManager.Actions.ACTION_AUTOSTART,
                 autoStartTitle,
                 autoStartMessage,
@@ -201,7 +203,7 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
 
     private void showManBatteryOptimizationDisabler(boolean isRequestNativeBatteryOptimizationDisabler) {
         BatteryOptimizationUtil.showBatteryOptimizationDialog(
-                mContext,
+                mActivity,
                 KillerManager.Actions.ACTION_POWERSAVING,
                 manBatteryTitle,
                 manBatteryMessage,

@@ -95,7 +95,7 @@
     <dimen name="md_title_frame_margin_bottom_less">6dp</dimen>
     <dimen name="md_title_textsize">20sp</dimen>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#fe3e02</item>
         <item name="colorPrimaryDark">#ff522a</item>

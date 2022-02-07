@@ -68,7 +68,7 @@ public class BatteryOptimizationUtil {
                     .setContentMessage(contentMessage)
                     .setPositiveMessage("Ok")
                     //.setNegativeMessage("Will Give Later")
-                    .setOnPositiveCallback((dialog, which) -> {
+                    .setOnPositiveCallback(view -> {
                         if (positiveCallback != null)
                             positiveCallback.onBatteryOptimizationAccepted();
                     })
