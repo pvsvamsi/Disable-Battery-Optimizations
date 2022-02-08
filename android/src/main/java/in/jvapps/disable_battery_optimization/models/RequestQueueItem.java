@@ -1,6 +1,6 @@
 package in.jvapps.disable_battery_optimization.models;
 
-import com.thelittlefireman.appkillermanager.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.managers.KillerManager;
 
 public class RequestQueueItem {
 

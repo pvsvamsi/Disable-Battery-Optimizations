@@ -9,12 +9,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.thelittlefireman.appkillermanager.managers.KillerManager;
-import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
+import in.jvapps.disable_battery_optimization.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.ui.DialogKillerManagerBuilder;
 
 
 public class BatteryOptimizationUtil {

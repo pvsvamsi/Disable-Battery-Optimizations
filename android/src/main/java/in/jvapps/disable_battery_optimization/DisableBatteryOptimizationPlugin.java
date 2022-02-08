@@ -7,7 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.thelittlefireman.appkillermanager.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.managers.KillerManager;
 
 import java.util.List;
 
@@ -82,7 +82,7 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                     if (arguments != null) {
                         autoStartTitle = String.valueOf(arguments.get(0));
                         autoStartMessage = String.valueOf(arguments.get(1));
-                        showAutoStartEnabler(null, null);
+                        showAutoStartEnabler(() -> setManAutoStart(true), () -> setManAutoStart(false));
                         result.success(true);
                     } else {
                         Log.e(TAG, "Unable to request enableAutoStart. Arguments are null");
