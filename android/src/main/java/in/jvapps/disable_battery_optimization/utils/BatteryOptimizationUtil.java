@@ -71,10 +71,10 @@ public class BatteryOptimizationUtil {
                         if (positiveCallback != null)
                             positiveCallback.onBatteryOptimizationAccepted();
                     })
-                    /*.setOnNegativeCallback((View view) -> {
+                    .setOnNegativeCallback((view) -> {
                         if (negativeCallback != null)
                             negativeCallback.onBatteryOptimizationCanceled();
-                    })*/
+                    })
                     .setAction(action)
                     .show();
         } else {
