@@ -6,23 +6,23 @@ class DisableBatteryOptimization {
   static const MethodChannel _channel =
       const MethodChannel('in.jvapps.disable_battery_optimization');
 
-  static Future<bool> showEnableAutoStartSettings(
+  static Future<bool?> showEnableAutoStartSettings(
       String dialogTitle, String dialogBody) async {
     return await _channel.invokeMethod(
         'showEnableAutoStart', <dynamic>[dialogTitle, dialogBody]);
   }
 
-  static Future<bool> showDisableManufacturerBatteryOptimizationSettings(
+  static Future<bool?> showDisableManufacturerBatteryOptimizationSettings(
       String dialogTitle, String dialogBody) async {
     return await _channel.invokeMethod('showDisableManBatteryOptimization',
         <dynamic>[dialogTitle, dialogBody]);
   }
 
-  static Future<bool> showDisableBatteryOptimizationSettings() async {
+  static Future<bool?> showDisableBatteryOptimizationSettings() async {
     return await _channel.invokeMethod('showDisableBatteryOptimization');
   }
 
-  static Future<bool> showDisableAllOptimizationsSettings(
+  static Future<bool?> showDisableAllOptimizationsSettings(
       String autoStartTitle,
       String autoStartBody,
       String manBatteryTitle,
@@ -35,19 +35,19 @@ class DisableBatteryOptimization {
     ]);
   }
 
-  static Future<bool> get isAutoStartEnabled async {
+  static Future<bool?> get isAutoStartEnabled async {
     return await _channel.invokeMethod("isAutoStartEnabled");
   }
 
-  static Future<bool> get isBatteryOptimizationDisabled async {
+  static Future<bool?> get isBatteryOptimizationDisabled async {
     return await _channel.invokeMethod("isBatteryOptimizationDisabled");
   }
 
-  static Future<bool> get isManufacturerBatteryOptimizationDisabled async {
+  static Future<bool?> get isManufacturerBatteryOptimizationDisabled async {
     return await _channel.invokeMethod("isManBatteryOptimizationDisabled");
   }
 
-  static Future<bool> get isAllBatteryOptimizationDisabled async {
+  static Future<bool?> get isAllBatteryOptimizationDisabled async {
     return await _channel.invokeMethod("isAllOptimizationsDisabled");
   }
 }
