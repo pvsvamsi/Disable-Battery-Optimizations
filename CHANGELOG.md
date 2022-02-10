@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Migrated to null safety
+
 ## 1.0.0
 
 - Fixed issues with flutter version 2 + Upgraded the dependent libraries
