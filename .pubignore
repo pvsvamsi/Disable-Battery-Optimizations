@@ -25,18 +25,20 @@
 .packages
 .pub-cache/
 .pub/
+/build/
+/assets/images/
 pubscpec.lock
 
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
 **/android/captures/
+**/build/*
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
 **/android/localLib/
-**/build/*
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
