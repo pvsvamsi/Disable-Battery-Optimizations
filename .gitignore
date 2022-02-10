@@ -13,8 +13,7 @@
 *.iml
 *.ipr
 *.iws
-.idea/*
-**/.idea/*
+.idea/
 
 # Visual Studio Code related
 .vscode/
@@ -26,6 +25,7 @@
 .packages
 .pub-cache/
 .pub/
+build/*
 pubscpec.lock
 
 # Android related
@@ -38,6 +38,7 @@ pubscpec.lock
 **/android/**/GeneratedPluginRegistrant.java
 **/android/localLib/
 **/build/*
+android/.idea/
 
 # iOS/XCode related
 **/ios/**/*.mode1v3

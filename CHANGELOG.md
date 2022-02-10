@@ -1,3 +1,7 @@
+## 1.1.0+1
+
+- Added gitignore and pubignore
+
 ## 1.1.0
 
 - Migrated to null safety
