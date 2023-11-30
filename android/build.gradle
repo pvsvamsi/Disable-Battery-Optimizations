@@ -24,6 +24,11 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    // Conditional for compatibility with AGP <4.2.
+    if (project.android.hasProperty("namespace")) {
+        namespace 'in.jvapps.disable_battery_optimization'
+    }
+
     compileSdkVersion 31
     defaultConfig {
         minSdkVersion 21
