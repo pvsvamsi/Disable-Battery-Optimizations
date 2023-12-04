@@ -22,7 +22,7 @@
 *.ipr
 *.iws
 *.buildship.*
-.idea/*
+.idea/
 
 # Visual Studio Code related
 .vscode/
@@ -35,23 +35,19 @@
 .pub-cache/
 .pub/
 build/*
-/assets/images/
 pubscpec.lock
 
 # Android related
-**/android/**/.classpath
-**/android/**/.project
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
-**/android/bin/
 **/android/captures/
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-**/build/*
 **/android/localLib/
-**/android/.idea/*
+**/build/*
+android/.idea/
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
@@ -80,14 +76,12 @@ pubscpec.lock
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/Flutter/flutter_export_environment.sh
 
-### Others
-/example/.flutter-plugins-dependencies
-/example/ios/Flutter/flutter_export_environment.sh
-
-
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+pubspec.lock
+example/.flutter-plugins-dependencies
+android/localLib/flutter.jar

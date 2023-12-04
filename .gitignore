@@ -13,6 +13,7 @@
 *.iml
 *.ipr
 *.iws
+*.buildship.*
 .idea/
 
 # Visual Studio Code related
