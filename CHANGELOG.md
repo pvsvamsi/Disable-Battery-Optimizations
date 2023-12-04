@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Bump to Dart3 + Android gradle namespace fix (PR #13)
+
 ## 1.1.0+1
 
 - Added gitignore and pubignore
