@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Is Auto Start Enabled"),
                   onPressed: () async {
                     bool isAutoStartEnabled =
-                        await DisableBatteryOptimization.isAutoStartEnabled;
+                        await DisableBatteryOptimization.isAutoStartEnabled ?? false;
                     print(
                         "Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"}");
                   }),
@@ -36,8 +36,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Is Battery optimization disabled"),
                   onPressed: () async {
                     bool isBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isBatteryOptimizationDisabled;
+                        await DisableBatteryOptimization.isBatteryOptimizationDisabled ?? false;
                     print(
                         "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
                   }),
@@ -45,8 +44,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Is Manufacturer Battery optimization disabled"),
                   onPressed: () async {
                     bool isManBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isManufacturerBatteryOptimizationDisabled;
+                        await DisableBatteryOptimization.isManufacturerBatteryOptimizationDisabled ?? false;
                     print(
                         "Manufacturer Battery optimization is ${!isManBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
                   }),
@@ -54,8 +52,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text("Are All Battery optimizations disabled"),
                   onPressed: () async {
                     bool isAllBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isAllBatteryOptimizationDisabled;
+                        await DisableBatteryOptimization.isAllBatteryOptimizationDisabled ?? false;
                     print(
                         "All Battery optimizations are disabled ${isAllBatteryOptimizationDisabled ? "True" : "False"}");
                   }),
