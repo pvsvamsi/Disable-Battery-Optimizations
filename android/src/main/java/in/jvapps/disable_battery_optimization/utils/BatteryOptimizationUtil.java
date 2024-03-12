@@ -43,7 +43,8 @@ public class BatteryOptimizationUtil {
         String sb = "package:" +
                 context.getApplicationContext().getPackageName();
         @SuppressLint("BatteryLife") Intent intent = new Intent(ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse(sb));
-        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        // NOT using FLAG_ACTIVITY_NEW_TASK to allow having an activity result callback at the end of the activity
+        // according to Gemini, this should be ok security wise for this particular intent
         return intent.resolveActivity(context.getPackageManager()) == null ? getAppSettingsIntent(context) : intent;
     }
 
@@ -89,6 +90,10 @@ public class BatteryOptimizationUtil {
 
     public interface OnBatteryOptimizationCanceled {
         void onBatteryOptimizationCanceled();
+    }
+
+    public interface OnBatteryOptimizationDone {
+        void onBatteryOptimizationDone(boolean result);
     }
 
 }

@@ -65,22 +65,24 @@ class _MyAppState extends State<MyApp> {
                   }),
               MaterialButton(
                   child: Text("Disable Battery Optimizations"),
-                  onPressed: () {
+                  onPressed: () async {
                     DisableBatteryOptimization
                         .showDisableBatteryOptimizationSettings();
+                    await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
                   }),
               MaterialButton(
                   child: Text("Disable Manufacturer Battery Optimizations"),
-                  onPressed: () {
-                    DisableBatteryOptimization
+                  onPressed: () async {
+                    await DisableBatteryOptimization
                         .showDisableManufacturerBatteryOptimizationSettings(
                             "Your device has additional battery optimization",
                             "Follow the steps and disable the optimizations to allow smooth functioning of this app");
                   }),
               MaterialButton(
                   child: Text("Disable all Optimizations"),
-                  onPressed: () {
+                  onPressed: () async {
                     DisableBatteryOptimization.showDisableAllOptimizationsSettings(
+                    await DisableBatteryOptimization.showDisableAllOptimizationsSettings(
                         "Enable Auto Start",
                         "Follow the steps and enable the auto start of this app",
                         "Your device has additional battery optimization",
