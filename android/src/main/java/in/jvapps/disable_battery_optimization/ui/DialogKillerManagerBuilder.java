@@ -141,6 +141,8 @@ public class DialogKillerManagerBuilder {
             negativeBtnStr = mContext.getText(android.R.string.cancel).toString();
         }
 
+        builder.cancelable(false);
+
         builder.positiveText(positiveBtnStr)
                 .customView(R.layout.md_dialog_custom_view, false)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
