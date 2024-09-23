@@ -112,7 +112,15 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 break;
             case "showDisableBatteryOptimization":
                 try {
-                    showIgnoreBatteryPermissions();
+                    List arguments = (List) call.arguments;
+                    if(arguments != null) {
+                        manBatteryTitle = String.valueOf(arguments.get(0));
+                        manBatteryMessage = String.valueOf(arguments.get(1));
+                        showIgnoreBatteryPermissions();
+                    } else {
+                        Log.e(TAG, "Unable to request disable battery optimization. Arguments are null");
+                        result.success(false);
+                    }
                     result.success(true);
                 } catch (Exception ex) {
                     Log.e(TAG, "Exception in showDisableBatteryOptimization. " + ex.toString());
@@ -223,12 +231,23 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
 
     private void showIgnoreBatteryPermissions() {
         if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext)) {
-            final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
-            if (ignoreBatteryOptimizationsIntent != null) {
-                mContext.startActivity(ignoreBatteryOptimizationsIntent);
-            } else {
-                Log.i(TAG, "Can't ignore the battery optimization as the intent is null");
-            }
+
+            BatteryOptimizationUtil.showBatteryOptimizationDialog(
+                mActivity,
+                KillerManager.Actions.ACTION_AUTOSTART,
+                autoStartTitle,
+                autoStartMessage,
+                () => {
+                    final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
+                    if (ignoreBatteryOptimizationsIntent != null) {
+                        mContext.startActivity(ignoreBatteryOptimizationsIntent);
+                    } else {
+                        Log.i(TAG, "Can't ignore the battery optimization as the intent is null");
+                    }
+                },
+                () => {}
+            );
+            
         } else {
             Log.i(TAG, "Battery optimization is already disabled");
         }
