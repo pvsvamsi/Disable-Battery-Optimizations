@@ -53,7 +53,8 @@ public class BatteryOptimizationUtil {
             @Nullable String titleMessage,
             final String contentMessage,
             @Nullable final OnBatteryOptimizationAccepted positiveCallback,
-            @Nullable final OnBatteryOptimizationCanceled negativeCallback) {
+            @Nullable final OnBatteryOptimizationCanceled negativeCallback,
+            @Nullable final OnBatteryOptimizationNotAvailable notAvailableCallback) {
 
         if (KillerManager.isActionAvailable(context, action)) {
             if (titleMessage == null) {
@@ -78,8 +79,8 @@ public class BatteryOptimizationUtil {
                     .setAction(action)
                     .show();
         } else {
-            if (positiveCallback != null)
-                positiveCallback.onBatteryOptimizationAccepted();
+            if (notAvailableCallback != null)
+                notAvailableCallback.OnBatteryOptimizationNotAvailable();
         }
     }
 
@@ -89,6 +90,10 @@ public class BatteryOptimizationUtil {
 
     public interface OnBatteryOptimizationCanceled {
         void onBatteryOptimizationCanceled();
+    }
+
+    public interface OnBatteryOptimizationNotAvailable {
+        void OnBatteryOptimizationNotAvailable();
     }
 
 }
