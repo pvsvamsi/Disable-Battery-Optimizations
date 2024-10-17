@@ -126,8 +126,8 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 try {
                     List arguments = (List) call.arguments;
                     if(arguments != null) {
-                        manBatteryTitle = String.valueOf(arguments.get(0));
-                        manBatteryMessage = String.valueOf(arguments.get(1));
+                        autoStartTitle = String.valueOf(arguments.get(0));
+                        autoStartMessage = String.valueOf(arguments.get(1));
                         showIgnoreBatteryPermissions(() -> {
                             result.success("enabled");
                         }, () -> {
