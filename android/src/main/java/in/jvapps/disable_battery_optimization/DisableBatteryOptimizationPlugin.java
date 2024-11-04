@@ -76,6 +76,12 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         switch (call.method) {
+            case "callAutoStart":
+                KillerManager.doActionAutoStart(mContext);
+                break;
+            case "callDisableBatteryOptimization":
+                KillerManager.doActionPowerSaving(mContext);
+                break;
             case "showEnableAutoStart":
                 try {
                     List arguments = (List) call.arguments;

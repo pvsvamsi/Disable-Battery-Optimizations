@@ -50,6 +50,14 @@ class DisableBatteryOptimization {
     return await _channel.invokeMethod("isAllOptimizationsDisabled");
   }
 
+  static Future<void> callAutoStart() async {
+    await _channel.invokeMethod("callAutoStart");
+  }
+
+  static Future<void> callDisableBatteryOptimization() async {
+    await _channel.invokeMethod("callDisableBatteryOptimization");
+  }
+
   static ReturnValue _parseReturnValue(String value) {
     switch (value) {
       case "enabled":
