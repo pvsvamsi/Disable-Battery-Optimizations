@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import in.jvapps.disable_battery_optimization.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.managers.DevicesManager;
 
 import java.util.List;
 
@@ -334,7 +335,6 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
 
     public boolean getManBatteryOptimization() {
         boolean isManBatteryAvailable = KillerManager.isActionAvailable(mContext, KillerManager.Actions.ACTION_POWERSAVING);
-        PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_BATTERY_OPTIMIZATION_ACCEPTED, !isManBatteryAvailable);
         return !isManBatteryAvailable;
     }
 
@@ -343,8 +343,10 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     public boolean getManAutoStart() {
+        if(DevicesManager.getDevice() == null) { 
+            return true;
+        }
         boolean isAutoStartAvailable = KillerManager.isActionAvailable(mContext, KillerManager.Actions.ACTION_AUTOSTART);
-        PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_AUTO_START_ACCEPTED, !isAutoStartAvailable);
         return !isAutoStartAvailable;
     }
 }

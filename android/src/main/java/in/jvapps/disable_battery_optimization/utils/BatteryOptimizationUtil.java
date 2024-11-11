@@ -13,6 +13,7 @@ import android.os.PowerManager;
 import androidx.annotation.Nullable;
 
 import in.jvapps.disable_battery_optimization.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.managers.DevicesManager;
 import in.jvapps.disable_battery_optimization.ui.DialogKillerManagerBuilder;
 
 
@@ -31,6 +32,9 @@ public class BatteryOptimizationUtil {
         String packageName = context.getApplicationContext().getPackageName();
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (powerManager == null) {
+            return true;
+        }
+        if(DevicesManager.getDevice() == null) { 
             return true;
         }
         return powerManager.isIgnoringBatteryOptimizations(packageName);

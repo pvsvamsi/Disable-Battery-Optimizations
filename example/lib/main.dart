@@ -25,17 +25,30 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget>[
               MaterialButton(
+                  child: Text("Call autostart intent"),
+                  onPressed: () {
+                    DisableBatteryOptimization.callAutoStart();
+                    print("Called auto start");
+                  }),
+              MaterialButton(
+                  child: Text("Call battery optimization intent"),
+                  onPressed: () {
+                    DisableBatteryOptimization.callDisableBatteryOptimization();
+                    print("Called disable battery optimization");
+                  }),
+              MaterialButton(
                   child: Text("Is Auto Start Enabled"),
                   onPressed: () async {
                     final isAutoStartEnabled = await DisableBatteryOptimization.isAutoStartEnabled;
-                    print("Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"}");
+                    print("Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"} - ${isAutoStartEnabled}");
                   }),
               MaterialButton(
                   child: Text("Is Battery optimization disabled"),
                   onPressed: () async {
                     final isBatteryOptimizationDisabled =
                         await DisableBatteryOptimization.isBatteryOptimizationDisabled;
-                    print("Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                    print(
+                        "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"} - ${isBatteryOptimizationDisabled}");
                   }),
               MaterialButton(
                   child: Text("Is Manufacturer Battery optimization disabled"),
