@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.os.PowerManager;
 
 import androidx.annotation.NonNull;
 
@@ -176,9 +177,11 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 }
                 break;
             case "isAutoStartEnabled":
+                // @ToDO
                 result.success(getManAutoStart());
                 break;
             case "isBatteryOptimizationDisabled":
+                // @ToDO
                 result.success(BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext));
                 break;
             case "isManBatteryOptimizationDisabled":
@@ -343,6 +346,15 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     public boolean getManAutoStart() {
+        PowerManager powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+
+        if (powerManager != null) {
+            String packageName = mContext.getPackageName();
+            boolean isIgnoringBattery = powerManager.isIgnoringBatteryOptimizations(packageName);
+            Log.i(TAG, "Is ignoring battery: " + isIgnoringBattery);
+            return !isIgnoringBattery;
+        }
+
         if(DevicesManager.getDevice() == null) { 
             return true;
         }
