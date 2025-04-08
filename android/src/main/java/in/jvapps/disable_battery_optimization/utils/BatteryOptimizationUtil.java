@@ -13,6 +13,7 @@ import android.os.PowerManager;
 import androidx.annotation.Nullable;
 
 import in.jvapps.disable_battery_optimization.managers.KillerManager;
+import in.jvapps.disable_battery_optimization.managers.DevicesManager;
 import in.jvapps.disable_battery_optimization.ui.DialogKillerManagerBuilder;
 
 
@@ -31,6 +32,9 @@ public class BatteryOptimizationUtil {
         String packageName = context.getApplicationContext().getPackageName();
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (powerManager == null) {
+            return true;
+        }
+        if(DevicesManager.getDevice() == null) { 
             return true;
         }
         return powerManager.isIgnoringBatteryOptimizations(packageName);
@@ -53,7 +57,8 @@ public class BatteryOptimizationUtil {
             @Nullable String titleMessage,
             final String contentMessage,
             @Nullable final OnBatteryOptimizationAccepted positiveCallback,
-            @Nullable final OnBatteryOptimizationCanceled negativeCallback) {
+            @Nullable final OnBatteryOptimizationCanceled negativeCallback,
+            @Nullable final OnBatteryOptimizationNotAvailable notAvailableCallback) {
 
         if (KillerManager.isActionAvailable(context, action)) {
             if (titleMessage == null) {
@@ -78,8 +83,8 @@ public class BatteryOptimizationUtil {
                     .setAction(action)
                     .show();
         } else {
-            if (positiveCallback != null)
-                positiveCallback.onBatteryOptimizationAccepted();
+            if (notAvailableCallback != null)
+                notAvailableCallback.OnBatteryOptimizationNotAvailable();
         }
     }
 
@@ -89,6 +94,10 @@ public class BatteryOptimizationUtil {
 
     public interface OnBatteryOptimizationCanceled {
         void onBatteryOptimizationCanceled();
+    }
+
+    public interface OnBatteryOptimizationNotAvailable {
+        void OnBatteryOptimizationNotAvailable();
     }
 
 }

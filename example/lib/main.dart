@@ -25,69 +25,78 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget>[
               MaterialButton(
+                  child: Text("Call autostart intent"),
+                  onPressed: () {
+                    DisableBatteryOptimization.callAutoStart();
+                    print("Called auto start");
+                  }),
+              MaterialButton(
+                  child: Text("Call battery optimization intent"),
+                  onPressed: () {
+                    DisableBatteryOptimization.callDisableBatteryOptimization();
+                    print("Called disable battery optimization");
+                  }),
+              MaterialButton(
                   child: Text("Is Auto Start Enabled"),
                   onPressed: () async {
-                    bool isAutoStartEnabled =
-                        await DisableBatteryOptimization.isAutoStartEnabled;
-                    print(
-                        "Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"}");
+                    final isAutoStartEnabled = await DisableBatteryOptimization.isAutoStartEnabled;
+                    print("Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"} - ${isAutoStartEnabled}");
                   }),
               MaterialButton(
                   child: Text("Is Battery optimization disabled"),
                   onPressed: () async {
-                    bool isBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isBatteryOptimizationDisabled;
+                    final isBatteryOptimizationDisabled =
+                        await DisableBatteryOptimization.isBatteryOptimizationDisabled;
                     print(
-                        "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                        "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"} - ${isBatteryOptimizationDisabled}");
                   }),
               MaterialButton(
                   child: Text("Is Manufacturer Battery optimization disabled"),
                   onPressed: () async {
-                    bool isManBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isManufacturerBatteryOptimizationDisabled;
+                    final isManBatteryOptimizationDisabled =
+                        await DisableBatteryOptimization.isManufacturerBatteryOptimizationDisabled;
                     print(
                         "Manufacturer Battery optimization is ${!isManBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Are All Battery optimizations disabled"),
                   onPressed: () async {
-                    bool isAllBatteryOptimizationDisabled =
-                        await DisableBatteryOptimization
-                            .isAllBatteryOptimizationDisabled;
+                    final isAllBatteryOptimizationDisabled =
+                        await DisableBatteryOptimization.isAllBatteryOptimizationDisabled;
                     print(
                         "All Battery optimizations are disabled ${isAllBatteryOptimizationDisabled ? "True" : "False"}");
                   }),
               MaterialButton(
                   child: Text("Enable Auto Start"),
-                  onPressed: () {
-                    DisableBatteryOptimization.showEnableAutoStartSettings(
-                        "Enable Auto Start",
-                        "Follow the steps and enable the auto start of this app");
+                  onPressed: () async {
+                    final r = await DisableBatteryOptimization.showEnableAutoStartSettings(
+                        "Enable Auto Start", "Follow the steps and enable the auto start of this app");
+                    print("Result ${r}");
                   }),
               MaterialButton(
                   child: Text("Disable Battery Optimizations"),
-                  onPressed: () {
-                    DisableBatteryOptimization
-                        .showDisableBatteryOptimizationSettings();
+                  onPressed: () async {
+                    final r = await DisableBatteryOptimization.showDisableBatteryOptimizationSettings(
+                        "Disable battery optimization settings", "Follow the steps to disable it");
+                    print("Result ${r}");
                   }),
               MaterialButton(
                   child: Text("Disable Manufacturer Battery Optimizations"),
-                  onPressed: () {
-                    DisableBatteryOptimization
-                        .showDisableManufacturerBatteryOptimizationSettings(
-                            "Your device has additional battery optimization",
-                            "Follow the steps and disable the optimizations to allow smooth functioning of this app");
+                  onPressed: () async {
+                    final r = await DisableBatteryOptimization.showDisableManufacturerBatteryOptimizationSettings(
+                        "Your device has additional battery optimization",
+                        "Follow the steps and disable the optimizations to allow smooth functioning of this app");
+                    print("Result ${r}");
                   }),
               MaterialButton(
                   child: Text("Disable all Optimizations"),
-                  onPressed: () {
-                    DisableBatteryOptimization.showDisableAllOptimizationsSettings(
+                  onPressed: () async {
+                    final r = await DisableBatteryOptimization.showDisableAllOptimizationsSettings(
                         "Enable Auto Start",
                         "Follow the steps and enable the auto start of this app",
                         "Your device has additional battery optimization",
                         "Follow the steps and disable the optimizations to allow smooth functioning of this app");
+                    print("Result ${r}");
                   })
             ],
           ),
