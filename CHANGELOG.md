@@ -1,3 +1,7 @@
+## 1.1.2
+
+- Fix flutter 3.29 build: Remove static registerWith method due to deprecation (PR #21)
+
 ## 1.1.1
 
 - Bump to Dart3 + Android gradle namespace fix (PR #13)
