@@ -101,9 +101,9 @@ public class KillerManager {
             }
         } else {
             // device not found action failed
+               LogUtils.e(KillerManager.class.getName(), "DEVICE NOT FOUND" + "SYSTEM UTILS \n" +
+                        SystemUtils.getDefaultDebugInformation());
             return null;
-               /* LogUtils.e(KillerManager.class.getName(), "DEVICE NOT FOUND" + "SYSTEM UTILS \n" +
-                        SystemUtils.getDefaultDebugInformation());*/
         }
     }
 
@@ -126,7 +126,7 @@ public class KillerManager {
 
         } catch (Exception e) {
             // Exception handle action failed
-            LogUtils.e(KillerManager.class.getName(), e.getMessage());
+            LogUtils.e(KillerManager.class.getName(), "INTENT EXCEPTION " + e.getMessage());
             return false;
         }
         return false;
