@@ -53,7 +53,8 @@ public class BatteryOptimizationUtil {
             @Nullable String titleMessage,
             final String contentMessage,
             @Nullable final OnBatteryOptimizationAccepted positiveCallback,
-            @Nullable final OnBatteryOptimizationCanceled negativeCallback) {
+            @Nullable final OnBatteryOptimizationCanceled negativeCallback,
+            boolean showInstructionImages) {
 
         if (KillerManager.isActionAvailable(context, action)) {
             if (titleMessage == null) {
@@ -66,6 +67,7 @@ public class BatteryOptimizationUtil {
                     .setTitleMessage(titleMessage)
                     .setContentMessage(contentMessage)
                     .setPositiveMessage("Ok")
+                    .setShowImages(showInstructionImages)
                     //.setNegativeMessage("Will Give Later")
                     .setOnPositiveCallback(view -> {
                         if (positiveCallback != null)

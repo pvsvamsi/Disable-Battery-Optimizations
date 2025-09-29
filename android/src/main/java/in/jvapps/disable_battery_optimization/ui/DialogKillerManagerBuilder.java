@@ -36,6 +36,7 @@ public class DialogKillerManagerBuilder {
     private KillerManager.Actions mAction;
 
     private boolean enableDontShowAgain = true;
+    private boolean showImages = true;
 
     private String titleMessage;
     private String contentMessage;
@@ -109,6 +110,10 @@ public class DialogKillerManagerBuilder {
 
     public DialogKillerManagerBuilder setOnNegativeCallback(@NonNull View.OnClickListener onNegative) {
         this.onNegative = onNegative;
+        return this;
+    }
+    public DialogKillerManagerBuilder setShowImages(boolean showImages) {
+        this.showImages = showImages;
         return this;
     }
 
@@ -223,22 +228,26 @@ public class DialogKillerManagerBuilder {
         }
 
         //TODO add other specific images
-        int helpImageRes = 0;
-        switch (mAction) {
-            case ACTION_AUTOSTART:
-                helpImageRes = KillerManager.getDevice().getHelpImageAutoStart();
-                break;
-            case ACTION_POWERSAVING:
-                helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
-                break;
-            case ACTION_NOTIFICATIONS:
-                helpImageRes = KillerManager.getDevice().getHelpImageNotification();
-                break;
-        }
+        if(showImages) {
+            int helpImageRes = 0;
+            switch (mAction) {
+                case ACTION_AUTOSTART:
+                    helpImageRes = KillerManager.getDevice().getHelpImageAutoStart();
+                    break;
+                case ACTION_POWERSAVING:
+                    helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
+                    break;
+                case ACTION_NOTIFICATIONS:
+                    helpImageRes = KillerManager.getDevice().getHelpImageNotification();
+                    break;
+            }
 
-        if (helpImageRes != 0) {
-            helpImageView.setImageResource(helpImageRes);
-        }else{
+            if (helpImageRes != 0) {
+                helpImageView.setImageResource(helpImageRes);
+            }else{
+                helpImageView.setVisibility(View.GONE);
+            } 
+        } else {
             helpImageView.setVisibility(View.GONE);
         }
     }

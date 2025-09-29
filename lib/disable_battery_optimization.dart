@@ -7,15 +7,21 @@ class DisableBatteryOptimization {
       const MethodChannel('in.jvapps.disable_battery_optimization');
 
   static Future<bool?> showEnableAutoStartSettings(
-      String dialogTitle, String dialogBody) async {
-    return await _channel.invokeMethod(
-        'showEnableAutoStart', <dynamic>[dialogTitle, dialogBody]);
+    String dialogTitle,
+    String dialogBody, {
+    bool showInstructionImages = true,
+  }) async {
+    return await _channel.invokeMethod('showEnableAutoStart',
+        <dynamic>[dialogTitle, dialogBody, showInstructionImages]);
   }
 
   static Future<bool?> showDisableManufacturerBatteryOptimizationSettings(
-      String dialogTitle, String dialogBody) async {
+    String dialogTitle,
+    String dialogBody, {
+    bool showInstructionImages = true,
+  }) async {
     return await _channel.invokeMethod('showDisableManBatteryOptimization',
-        <dynamic>[dialogTitle, dialogBody]);
+        <dynamic>[dialogTitle, dialogBody, showInstructionImages]);
   }
 
   static Future<bool?> showDisableBatteryOptimizationSettings() async {
@@ -23,15 +29,18 @@ class DisableBatteryOptimization {
   }
 
   static Future<bool?> showDisableAllOptimizationsSettings(
-      String autoStartTitle,
-      String autoStartBody,
-      String manBatteryTitle,
-      String manBatteryBody) async {
+    String autoStartTitle,
+    String autoStartBody,
+    String manBatteryTitle,
+    String manBatteryBody, {
+    bool showInstructionImages = true,
+  }) async {
     return await _channel.invokeMethod('disableAllOptimizations', <dynamic>[
       autoStartTitle,
       autoStartBody,
       manBatteryTitle,
-      manBatteryBody
+      manBatteryBody,
+      showInstructionImages,
     ]);
   }
 
