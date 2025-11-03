@@ -29,10 +29,10 @@ android {
         namespace 'in.jvapps.disable_battery_optimization'
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 36
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
