@@ -1,22 +1,80 @@
+//group 'in.jvapps.disable_battery_optimization'
+//version '1.0'
+//
+//buildscript {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:4.1.0'
+//    }
+//}
+//
+//rootProject.allprojects {
+//    repositories {
+//        google()
+//        jcenter()
+//        maven { url 'https://jitpack.io' }
+//    }
+//}
+//
+//apply plugin: 'com.android.library'
+//
+//android {
+//    // Conditional for compatibility with AGP <4.2.
+//    if (project.android.hasProperty("namespace")) {
+//        namespace 'in.jvapps.disable_battery_optimization'
+//    }
+//
+//    compileSdkVersion 31
+//    defaultConfig {
+//        minSdkVersion 21
+//        targetSdkVersion 31
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//    lintOptions {
+//        disable 'InvalidPackage'
+//    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//}
+//
+//dependencies {
+//    //implementation files('localLib/flutter.jar')
+//    implementation 'androidx.annotation:annotation:1.3.0'
+//    implementation 'androidx.appcompat:appcompat:1.4.1'
+//    implementation 'com.google.android.material:material:1.5.0'
+//    //implementation 'com.github.pvsvamsi:AppKillerManager:2.1.6'
+//    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+//    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+//    implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+//}
+// Top-level build file for the plugin
+
 group 'in.jvapps.disable_battery_optimization'
 version '1.0'
 
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        // Updated AGP for Flutter 3.x / Gradle 7.x
+        classpath 'com.android.tools.build:gradle:7.4.0'
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
@@ -24,20 +82,23 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    // Conditional for compatibility with AGP <4.2.
+    // Conditional namespace for compatibility
     if (project.android.hasProperty("namespace")) {
         namespace 'in.jvapps.disable_battery_optimization'
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 33
+
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    lintOptions {
+
+    lint {
         disable 'InvalidPackage'
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -45,11 +106,9 @@ android {
 }
 
 dependencies {
-    //implementation files('localLib/flutter.jar')
     implementation 'androidx.annotation:annotation:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    //implementation 'com.github.pvsvamsi:AppKillerManager:2.1.6'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
