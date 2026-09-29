@@ -27,37 +27,37 @@ class _MyAppState extends State<MyApp> {
               MaterialButton(
                   child: Text("Is Auto Start Enabled"),
                   onPressed: () async {
-                    bool isAutoStartEnabled =
+                    bool? isAutoStartEnabled =
                         await DisableBatteryOptimization.isAutoStartEnabled;
                     print(
-                        "Auto start is ${isAutoStartEnabled ? "Enabled" : "Disabled"}");
+                        "Auto start is ${isAutoStartEnabled == true ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Is Battery optimization disabled"),
                   onPressed: () async {
-                    bool isBatteryOptimizationDisabled =
+                    bool? isBatteryOptimizationDisabled =
                         await DisableBatteryOptimization
                             .isBatteryOptimizationDisabled;
                     print(
-                        "Battery optimization is ${!isBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                        "Battery optimization is ${isBatteryOptimizationDisabled != true ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Is Manufacturer Battery optimization disabled"),
                   onPressed: () async {
-                    bool isManBatteryOptimizationDisabled =
+                    bool? isManBatteryOptimizationDisabled =
                         await DisableBatteryOptimization
                             .isManufacturerBatteryOptimizationDisabled;
                     print(
-                        "Manufacturer Battery optimization is ${!isManBatteryOptimizationDisabled ? "Enabled" : "Disabled"}");
+                        "Manufacturer Battery optimization is ${isManBatteryOptimizationDisabled != true ? "Enabled" : "Disabled"}");
                   }),
               MaterialButton(
                   child: Text("Are All Battery optimizations disabled"),
                   onPressed: () async {
-                    bool isAllBatteryOptimizationDisabled =
+                    bool? isAllBatteryOptimizationDisabled =
                         await DisableBatteryOptimization
                             .isAllBatteryOptimizationDisabled;
                     print(
-                        "All Battery optimizations are disabled ${isAllBatteryOptimizationDisabled ? "True" : "False"}");
+                        "All Battery optimizations are disabled ${isAllBatteryOptimizationDisabled == true ? "True" : "False"}");
                   }),
               MaterialButton(
                   child: Text("Enable Auto Start"),

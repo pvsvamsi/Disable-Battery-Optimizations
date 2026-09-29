@@ -29,6 +29,8 @@ flutter:
       android:
         package: in.jvapps.disable_battery_optimization
         pluginClass: DisableBatteryOptimizationPlugin
+      ios:
+        pluginClass: DisableBatteryOptimizationPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

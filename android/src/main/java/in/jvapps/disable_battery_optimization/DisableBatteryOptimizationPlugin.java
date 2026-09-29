@@ -62,6 +62,11 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
         switch (call.method) {
             case "showEnableAutoStart":
                 try {
+                    if (mActivity == null) {
+                        Log.e(TAG, "Cannot show enableAutoStart dialog: activity is not available (running in background service).");
+                        result.success(false);
+                        break;
+                    }
                     List arguments = (List) call.arguments;
                     if (arguments != null) {
                         autoStartTitle = String.valueOf(arguments.get(0));
@@ -79,6 +84,11 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 break;
             case "showDisableManBatteryOptimization":
                 try {
+                    if (mActivity == null) {
+                        Log.e(TAG, "Cannot show disableManBatteryOptimization dialog: activity is not available (running in background service).");
+                        result.success(false);
+                        break;
+                    }
                     List arguments = (List) call.arguments;
                     if (arguments != null) {
                         manBatteryTitle = String.valueOf(arguments.get(0));
@@ -105,6 +115,11 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 break;
             case "disableAllOptimizations":
                 try {
+                    if (mActivity == null) {
+                        Log.e(TAG, "Cannot show disableAllOptimizations dialog: activity is not available (running in background service).");
+                        result.success(false);
+                        break;
+                    }
                     List arguments = (List) call.arguments;
                     if (arguments != null) {
                         autoStartTitle = String.valueOf(arguments.get(0));
@@ -126,13 +141,13 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
                 result.success(getManAutoStart());
                 break;
             case "isBatteryOptimizationDisabled":
-                result.success(BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext));
+                result.success(mContext != null && BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext));
                 break;
             case "isManBatteryOptimizationDisabled":
                 result.success(getManBatteryOptimization());
                 break;
             case "isAllOptimizationsDisabled":
-                result.success(getManAutoStart() && BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext) && getManBatteryOptimization());
+                result.success(getManAutoStart() && mContext != null && BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext) && getManBatteryOptimization());
                 break;
             default:
                 result.notImplemented();
@@ -140,21 +155,27 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     @Override
-    public void onAttachedToEngine(FlutterPluginBinding binding) {
-
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         channel = new MethodChannel(binding.getBinaryMessenger(), CHANNEL_NAME);
         mContext = binding.getApplicationContext();
+        channel.setMethodCallHandler(this);
     }
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        if (channel != null) {
+            channel.setMethodCallHandler(null);
+            channel = null;
+        }
+        mContext = null;
     }
 
     @Override
-    public void onAttachedToActivity(ActivityPluginBinding binding) {
+    public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
         mActivity = binding.getActivity();
-        mContext = mActivity.getApplicationContext();
-        channel.setMethodCallHandler(this);
+        if (mContext == null) {
+            mContext = mActivity.getApplicationContext();
+        }
     }
 
     @Override
@@ -163,14 +184,13 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     @Override
-    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
         mActivity = binding.getActivity();
     }
 
     @Override
     public void onDetachedFromActivity() {
         mActivity = null;
-        channel.setMethodCallHandler(null);
     }
 
     private void showAutoStartEnabler(@NonNull final BatteryOptimizationUtil.OnBatteryOptimizationAccepted positiveCallback,
@@ -206,10 +226,15 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     private void showIgnoreBatteryPermissions() {
-        if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(mContext)) {
-            final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(mContext);
+        Context context = mActivity != null ? mActivity : mContext;
+        if (context == null) {
+            Log.e(TAG, "Can't ignore battery optimization: context is null");
+            return;
+        }
+        if (!BatteryOptimizationUtil.isIgnoringBatteryOptimizations(context)) {
+            final Intent ignoreBatteryOptimizationsIntent = BatteryOptimizationUtil.getIgnoreBatteryOptimizationsIntent(context);
             if (ignoreBatteryOptimizationsIntent != null) {
-                mContext.startActivity(ignoreBatteryOptimizationsIntent);
+                context.startActivity(ignoreBatteryOptimizationsIntent);
             } else {
                 Log.i(TAG, "Can't ignore the battery optimization as the intent is null");
             }
@@ -242,10 +267,13 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     public void setManBatteryOptimization(boolean val) {
-        PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_BATTERY_OPTIMIZATION_ACCEPTED, val);
+        if (mContext != null) {
+            PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_BATTERY_OPTIMIZATION_ACCEPTED, val);
+        }
     }
 
     public boolean getManBatteryOptimization() {
+        if (mContext == null) return false;
         if (PrefUtils.hasKey(mContext, PrefKeys.IS_MAN_BATTERY_OPTIMIZATION_ACCEPTED)) {
             return (boolean) PrefUtils.getFromPrefs(mContext, PrefKeys.IS_MAN_BATTERY_OPTIMIZATION_ACCEPTED, false);
         } else {
@@ -256,10 +284,13 @@ public class DisableBatteryOptimizationPlugin implements FlutterPlugin, Activity
     }
 
     public void setManAutoStart(boolean val) {
-        PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_AUTO_START_ACCEPTED, val);
+        if (mContext != null) {
+            PrefUtils.saveToPrefs(mContext, PrefKeys.IS_MAN_AUTO_START_ACCEPTED, val);
+        }
     }
 
     public boolean getManAutoStart() {
+        if (mContext == null) return false;
         if (PrefUtils.hasKey(mContext, PrefKeys.IS_MAN_AUTO_START_ACCEPTED)) {
             return (boolean) PrefUtils.getFromPrefs(mContext, PrefKeys.IS_MAN_AUTO_START_ACCEPTED, false);
         } else {

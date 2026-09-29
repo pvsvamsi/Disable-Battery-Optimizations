@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.jvapps.disable_battery_optimization">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="oppo.permission.OPPO_COMPONENT_SAFE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application></application>
+    <queries>
+        <intent>
+            <action android:name="android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="huawei.intent.action.HSM_PROTECTED_APPS" />
+        </intent>
+        <intent>
+            <action android:name="huawei.intent.action.HSM_BOOTAPP_MANAGER" />
+        </intent>
+        <intent>
+            <action android:name="huawei.intent.action.NOTIFICATIONMANAGER" />
+        </intent>
+        <intent>
+            <action android:name="com.samsung.android.sm.ACTION_BATTERY" />
+        </intent>
+        <intent>
+            <action android:name="miui.intent.action.APP_PERM_EDITOR" />
+        </intent>
+        <intent>
+            <action android:name="miui.intent.action.POWER_HIDE_MODE_APP_LIST" />
+        </intent>
+        <intent>
+            <action android:name="miui.intent.action.OP_AUTO_START" />
+        </intent>
+
+        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.miui.powerkeeper" />
+        <package android:name="com.coloros.safecenter" />
+        <package android:name="com.oppo.safe" />
+        <package android:name="com.color.safecenter" />
+        <package android:name="com.color.oppoguardelf" />
+        <package android:name="com.color.oppoguardelfr" />
+        <package android:name="com.oneplus.security" />
+        <package android:name="com.iqoo.secure" />
+        <package android:name="com.vivo.permissionmanager" />
+        <package android:name="com.vivo.abe" />
+        <package android:name="com.samsung.android.lool" />
+        <package android:name="com.samsung.android.sm" />
+        <package android:name="com.samsung.android.sm_cn" />
+        <package android:name="com.samsung.memorymanager" />
+        <package android:name="com.huawei.systemmanager" />
+        <package android:name="com.huawei.permissionmanager" />
+        <package android:name="com.asus.mobilemanager" />
+        <package android:name="com.letv.android.letvsafe" />
+        <package android:name="com.meizu.safe" />
+        <package android:name="com.zte.heartyservice" />
+        <package android:name="com.htc.pitroad" />
+    </queries>
 
 </manifest>
